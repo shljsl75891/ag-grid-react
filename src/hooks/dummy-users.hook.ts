@@ -10,9 +10,18 @@ const useDummyFetchUsers = () => {
 
   const colDefs = useMemo<ColDef<IAPIUsersDisplayData>[]>(
     () => [
-      { headerName: "Id", field: "id" },
-      { headerName: "Name", field: "fullName" },
-      { headerName: "Age", field: "age" },
+      {
+        headerName: "Id",
+        field: "id",
+      },
+      {
+        headerName: "Name",
+        field: "fullName",
+      },
+      {
+        headerName: "Age",
+        field: "age",
+      },
       {
         headerName: "Gender",
         field: "gender",
@@ -24,13 +33,38 @@ const useDummyFetchUsers = () => {
         valueFormatter: (p) => dateLocalize(p.value),
       },
       { headerName: "Email", field: "email" },
-      { headerName: "University", field: "university" },
-      { headerName: "Role", field: "role" },
-      { headerName: "Department", field: "department" },
-      { headerName: "Company", field: "company" },
-      { headerName: "Height", field: "height" },
-      { headerName: "Weight", field: "weight" },
-      { headerName: "Address", field: "address" },
+      {
+        headerName: "University",
+        field: "university",
+        tooltipField: "university",
+      },
+      {
+        headerName: "Role",
+        field: "role",
+      },
+      {
+        headerName: "Department",
+        field: "department",
+        tooltipField: "department",
+      },
+      {
+        headerName: "Company",
+        field: "company",
+        tooltipField: "company",
+      },
+      {
+        headerName: "Height",
+        field: "height",
+      },
+      {
+        headerName: "Weight",
+        field: "weight",
+      },
+      {
+        headerName: "Address",
+        field: "address",
+        tooltipField: "address",
+      },
     ],
     [],
   );
