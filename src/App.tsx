@@ -1,15 +1,13 @@
 import { ColDef, ColGroupDef } from "ag-grid-community";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
-import { AgGridReact } from "ag-grid-react";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo } from "react";
 import { IAPIUsersDisplayData } from "./adaptors/types";
-import UsersApdator from "./adaptors/users.adaptor";
-import UsersService from "./services/users.service";
+import useDummyFetchUsers from "./hooks/dummy-users.hook";
+import { AgGridReact } from "ag-grid-react";
 
 const App: React.FC = () => {
-  const [users, setUsers] = useState<IAPIUsersDisplayData[]>([]);
-
+  const users = useDummyFetchUsers();
   const colDefs: (
     | ColDef<IAPIUsersDisplayData, string | number>
     | ColGroupDef<IAPIUsersDisplayData>
@@ -32,21 +30,21 @@ const App: React.FC = () => {
     [],
   );
 
-  const populateData = async () => {
-    const usersService = new UsersService();
-    const usersAdaptor = new UsersApdator();
-    const data = await usersService.getUsers();
-    const adaptedData = data.map((user) => usersAdaptor.adaptToModel(user));
-    setUsers(adaptedData);
-  };
-
-  useEffect(() => {
-    populateData();
+  const defaultColDef = useMemo(() => {
+    return {
+      sortable: false,
+      filter: true,
+      resizable: true,
+    };
   }, []);
 
   return (
     <div className="ag-theme-alpine" style={{ height: 500 }}>
-      <AgGridReact columnDefs={colDefs} rowData={users} />
+      <AgGridReact
+        columnDefs={colDefs}
+        rowData={users}
+        defaultColDef={defaultColDef}
+      />
     </div>
   );
 };
