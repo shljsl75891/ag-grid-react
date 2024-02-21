@@ -1,8 +1,8 @@
+import { ColDef } from "ag-grid-community";
 import { useEffect, useMemo, useState } from "react";
 import { IAPIUsersDisplayData } from "../adaptors/types";
 import UsersApdator from "../adaptors/users.adaptor";
 import UsersService from "../services/users.service";
-import { ColDef } from "ag-grid-community";
 import { dateLocalize, pascalize } from "../utils/helper";
 
 const useDummyFetchUsers = () => {
@@ -13,10 +13,13 @@ const useDummyFetchUsers = () => {
       {
         headerName: "Id",
         field: "id",
+        checkboxSelection: true,
       },
       {
         headerName: "Name",
         field: "fullName",
+        suppressSizeToFit: true,
+        width: 150,
       },
       {
         headerName: "Age",
