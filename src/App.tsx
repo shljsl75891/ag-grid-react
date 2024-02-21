@@ -1,17 +1,12 @@
-import { ColDef, ColGroupDef } from "ag-grid-community";
-import "ag-grid-community/styles/ag-grid.css";
-import "ag-grid-community/styles/ag-theme-alpine.css";
+import { ColDef } from "ag-grid-community";
 import { useMemo } from "react";
 import { IAPIUsersDisplayData } from "./adaptors/types";
+import DataGrid from "./components/DataGrid";
 import useDummyFetchUsers from "./hooks/dummy-users.hook";
-import { AgGridReact } from "ag-grid-react";
 
 const App: React.FC = () => {
   const users = useDummyFetchUsers();
-  const colDefs: (
-    | ColDef<IAPIUsersDisplayData, string | number>
-    | ColGroupDef<IAPIUsersDisplayData>
-  )[] = useMemo(
+  const colDefs = useMemo<ColDef<IAPIUsersDisplayData, string | number>[]>(
     () => [
       { headerName: "Id", field: "id" },
       { headerName: "Name", field: "fullName" },
@@ -32,20 +27,18 @@ const App: React.FC = () => {
 
   const defaultColDef = useMemo(() => {
     return {
-      sortable: false,
+      sortable: true,
       filter: true,
       resizable: true,
     };
   }, []);
 
   return (
-    <div className="ag-theme-alpine" style={{ height: 500 }}>
-      <AgGridReact
-        columnDefs={colDefs}
-        rowData={users}
-        defaultColDef={defaultColDef}
-      />
-    </div>
+    <DataGrid
+      rowData={users}
+      columnDefs={colDefs}
+      defaultColDef={defaultColDef}
+    />
   );
 };
 
