@@ -25,12 +25,12 @@ const useDummyFetchUsers = () => {
       {
         headerName: "Gender",
         field: "gender",
-        valueFormatter: (p) => pascalize(p.value),
+        valueFormatter: (params) => pascalize(params.value),
       },
       {
         headerName: "DOB",
         field: "dateOfBirth",
-        valueFormatter: (p) => dateLocalize(p.value),
+        valueFormatter: (params) => dateLocalize(params.value),
       },
       { headerName: "Email", field: "email" },
       {
@@ -55,10 +55,16 @@ const useDummyFetchUsers = () => {
       {
         headerName: "Height",
         field: "height",
+        valueFormatter: (params) => {
+          return params.value + " cm";
+        },
       },
       {
         headerName: "Weight",
         field: "weight",
+        valueFormatter: (params) => {
+          return params.value + " kg";
+        },
       },
       {
         headerName: "Address",

@@ -10,3 +10,29 @@ body {
   height: 100%;
   width: 100%;
 }
+
+.grid-operations-button-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.button-primary {
+  display: inline-block;
+  padding: 8px 16px;
+  font-weight: 500;
+  margin: 5px;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  background-color: #f4511e;
+  color: white;
+  outline: none;
+  text-decoration: none;
+  &:hover {
+    background-color: #e64a19;
+  }
+  &:active {
+    background-color: #d62d00;
+  }
+}

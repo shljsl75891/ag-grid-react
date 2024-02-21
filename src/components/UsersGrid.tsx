@@ -18,16 +18,33 @@ const UsersGrid: React.FC = () => {
     };
   }, []);
 
+  const handleSelectAll = () => {
+    gridRef.current?.api?.selectAll();
+  };
+  const handleDeselectAll = () => {
+    gridRef.current?.api?.deselectAll();
+  };
+
   return (
-    <div className="ag-theme-alpine" style={{ height: "100vh" }}>
-      <AgGridReact<IAPIUsersDisplayData>
-        ref={gridRef}
-        rowData={users}
-        columnDefs={colDefs}
-        defaultColDef={defaultColDef}
-        enableBrowserTooltips={true}
-      />
-    </div>
+    <>
+      <div className="grid-operations-button-container">
+        <button className="button-primary" onClick={handleSelectAll}>
+          Select All
+        </button>
+        <button className="button-primary" onClick={handleDeselectAll}>
+          Deselect All
+        </button>
+      </div>
+      <div className="ag-theme-alpine" style={{ height: "100vh" }}>
+        <AgGridReact<IAPIUsersDisplayData>
+          ref={gridRef}
+          rowData={users}
+          columnDefs={colDefs}
+          defaultColDef={defaultColDef}
+          enableBrowserTooltips={true}
+        />
+      </div>
+    </>
   );
 };
 
